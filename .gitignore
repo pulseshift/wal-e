@@ -25,6 +25,8 @@ pip-log.txt
 .tox
 .cache
 htmlcov/
+.pytest_cache/
+
 
 #Translations
 *.mo
@@ -53,6 +55,14 @@ tramp
 .*.sw[a-z]
 *.un~
 Session.vim
+
+# IntelliJ gitignores
+#
+# https://github.com/github/gitignore/blob/4c9fba7b1e942141a3bf5345a8c3b91b3d77d241/Global/IntelliJ.gitignore
+*.iml
+*.ipr
+*.iws
+.idea/
 
 # Virtualenv
 .env

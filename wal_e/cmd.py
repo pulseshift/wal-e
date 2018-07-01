@@ -520,10 +520,13 @@ def configure_backup_cxt(args):
                     'WABS_SAS_TOKEN environment variables.'
                 ))
 
+        cloud_endpoint_suffix = os.getenv('WABS_CLOUD_ENDPOINT_SUFFIX')
+
         from wal_e.blobstore import wabs
         from wal_e.operator.wabs_operator import WABSBackup
 
-        creds = wabs.Credentials(account_name, access_key, access_token)
+        creds = wabs.Credentials(account_name, access_key,
+                                 access_token, cloud_endpoint_suffix)
 
         return WABSBackup(store, creds, gpg_key_id)
     elif store.is_swift:
