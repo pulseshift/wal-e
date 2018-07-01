@@ -75,7 +75,9 @@ def uri_put_file(creds, uri, fp, content_type=None):
         validate_content=True)
 
     conn = BlockBlobService(creds.account_name, creds.account_key,
-                sas_token=creds.access_token, protocol='https')
+                sas_token=creds.access_token,
+                endpoint_suffix=creds.cloud_endpoint_suffix,
+				protocol='https')
     conn.create_blob_from_bytes(url_tup.netloc, url_tup.path.lstrip('/'),
                 fp.read(), **kwargs)
 
@@ -91,7 +93,9 @@ def uri_get_file(creds, uri, conn=None):
 
     if conn is None:
         conn = BlockBlobService(creds.account_name, creds.account_key,
-                           sas_token=creds.access_token, protocol='https')
+                           sas_token=creds.access_token,
+                           endpoint_suffix=creds.cloud_endpoint_suffix,
+                           protocol='https')
 
     data = io.BytesIO()
 
@@ -113,7 +117,9 @@ def do_lzop_get(creds, url, path, decrypt, do_retry=True):
 
     conn = BlockBlobService(
         creds.account_name, creds.account_key,
-        sas_token=creds.access_token, protocol='https')
+        sas_token=creds.access_token,
+        endpoint_suffix=creds.cloud_endpoint_suffix,
+        protocol='https')
 
     def log_wal_fetch_failures_on_error(exc_tup, exc_processor_cxt):
         def standard_detail_message(prefix=''):

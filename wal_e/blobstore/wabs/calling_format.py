@@ -26,6 +26,7 @@ class CallingInfo(object):
         return BlockBlobService(account_name=creds.account_name,
                            account_key=creds.account_key,
                            sas_token=creds.access_token,
+                           endpoint_suffix=creds.cloud_endpoint_suffix,
                            protocol='https')
 
 
